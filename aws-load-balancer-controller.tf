@@ -1,3 +1,8 @@
+resource "aws_iam_user" "lb_controller_user" {
+  name = "aws-lb-controller-user"
+}
+
+
 resource "aws_iam_role" "aws-lb-controller" {
   name_prefix = "aws-lb-controller-${var.cluster_name}"
 
