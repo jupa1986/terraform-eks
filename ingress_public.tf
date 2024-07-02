@@ -1,20 +1,32 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: example-ingress
-  namespace: data
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-spec:
-  rules:
-    - host: example.yourdomain.com
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: example-service
-                port:
-                  number: 80
+resource "kubernetes_namespace" "example_public" {
+  metadata {
+    name = "public"
+  }
+}
+
+resource "kubernetes_ingress" "example_public" {
+  metadata {
+    name        = "example-ingress"
+    namespace   = "public"
+    annotations = {
+      "alb.ingress.kubernetes.io/scheme" = "internet-facing"
+      "alb.ingress.kubernetes.io/target-type": "ip"
+    }
+  }
+
+  spec {
+    rule {
+      host = "example.com.bo"
+
+      http {
+        path {
+          path = "/"
+          backend {
+            service_name = "example-service"
+            service_port = "80"
+          }
+        }
+      }
+    }
+  }
+}
