@@ -38,13 +38,11 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.5.3"
 
-  cluster_name    = local.cluster_name
+  cluster_name    = var.cluster_name
   cluster_version = "1.24"
 
   vpc_id                         = module.vpc.vpc_id
-
-  
-  subnet_ids                     = slice(module.vpc.private_subnets, 0, 2)
+  # subnet_ids                     = slice(module.vpc.private_subnets, 0, 3)
   # new group of subnets
   # subnet_ids                     = concat(data.aws_subnets.private-a.ids, data.aws_subnets.private-b.ids)
 
