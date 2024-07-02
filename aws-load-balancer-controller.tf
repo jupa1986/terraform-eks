@@ -4,7 +4,7 @@ resource "aws_iam_user" "lb_controller_user" {
 
 
 resource "aws_iam_role" "aws-lb-controller" {
-  name_prefix = "aws-lb-controller-${var.cluster_name}"
+  name = "aws-lb-controller-${var.cluster_name}"
 
   assume_role_policy    = <<EOF
 {
