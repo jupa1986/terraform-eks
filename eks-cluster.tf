@@ -42,9 +42,9 @@ module "eks" {
   cluster_version = "1.24"
 
   vpc_id                         = module.vpc.vpc_id
-  # subnet_ids                     = slice(module.vpc.private_subnets, 0, 3)
+  subnet_ids                     = slice(module.vpc.private_subnets, 3, 5)
   # new group of subnets
-  subnet_ids                     = concat(data.aws_subnets.private-a.ids, data.aws_subnets.private-b.ids)
+  # subnet_ids                     = [concat(data.aws_subnets.private-a.ids, data.aws_subnets.private-b.ids)
 
   cluster_endpoint_public_access = true
   enable_cluster_creator_admin_permissions = true
