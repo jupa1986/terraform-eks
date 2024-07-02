@@ -15,7 +15,7 @@ resource "aws_iam_role" "aws-lb-controller" {
             "Principal": {
                 "AWS": "${aws_iam_user.lb_controller_user.arn}"
             },
-            "Action": "sts"
+            "Action": "sts:AssumeRole"
         }
     ]
 }
