@@ -8,15 +8,17 @@ resource "aws_iam_role" "aws-lb-controller" {
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "${data.aws_iam_openid_connect_provider.this.arn}"
+                "AWS": "${aws_iam_user.lb_controller_user.arn}"
             },
-            "Action": "sts:AssumeRoleWithWebIdentity"
+            "Action": "sts"
         }
     ]
 }
 EOF
   force_detach_policies = true
 }
+
+
 
 resource "aws_iam_role_policy_attachment" "aws-lb-controller" {
   policy_arn = aws_iam_policy.aws-lb-controller.arn
