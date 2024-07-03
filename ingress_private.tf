@@ -9,6 +9,7 @@ resource "kubernetes_ingress" "example" {
     name        = "example-ingress"
     namespace   = "private"
     annotations = {
+      "kubernetes.io/ingress.class"      = "alb"
       "alb.ingress.kubernetes.io/scheme" = "internal"
     }
   }

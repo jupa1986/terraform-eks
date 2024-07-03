@@ -9,6 +9,7 @@ resource "kubernetes_ingress" "example_public" {
     name        = "example-ingress"
     namespace   = "public"
     annotations = {
+      "kubernetes.io/ingress.class"      = "alb"
       "alb.ingress.kubernetes.io/scheme" = "internet-facing"
       "alb.ingress.kubernetes.io/target-type": "ip"
     }
