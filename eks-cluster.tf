@@ -36,10 +36,10 @@ output "subnet_ids" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "20.5.3"
+  version = "~> 20.5.3"
 
   cluster_name    = var.cluster_name
-  cluster_version = "1.24"
+  cluster_version = "1.29"
 
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = slice(module.vpc.private_subnets, 3, 5)
@@ -53,6 +53,7 @@ module "eks" {
     ami_type = "AL2_x86_64"
 
   }
+
 
   eks_managed_node_groups = {
     one = {
